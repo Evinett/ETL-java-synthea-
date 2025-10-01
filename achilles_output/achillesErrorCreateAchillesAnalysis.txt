@@ -1,0 +1,58 @@
+DBMS:
+postgresql
+
+Error:
+org.postgresql.util.PSQLException: ERROR: schema "results_synthea" does not exist
+  Position: 14
+
+SQL:
+CREATE TABLE results_synthea.ACHILLES_ANALYSIS (
+	analysis_id     INTEGER,
+	analysis_name   VARCHAR(255),
+	stratum_1_name  VARCHAR(255),
+	stratum_2_name  VARCHAR(255),
+	stratum_3_name  VARCHAR(255),
+	stratum_4_name  VARCHAR(255),
+	stratum_5_name  VARCHAR(255),
+	is_default      INTEGER,
+	category        VARCHAR(255)
+)
+
+R version:
+R version 4.3.1 (2023-06-16)
+
+Platform:
+aarch64-apple-darwin20
+
+Attached base packages:
+- stats
+- graphics
+- grDevices
+- utils
+- datasets
+- methods
+- base
+
+Other attached packages:
+- Achilles (1.7.2)
+- DatabaseConnector (6.4.0)
+- SqlRender (1.19.2)
+- ParallelLogger (3.4.2)
+- remotes (2.5.0)
+- getPass (0.2-4)
+- rstudioapi (0.17.1)
+- dbplyr (2.5.0)
+- digest (0.6.37)
+- checkmate (2.3.2)
+- bit64 (4.6.0-1)
+- bit (4.6.0)
+- urltools (1.7.3.1)
+- stringr (1.5.1)
+- rlang (1.1.6)
+- tseries (0.10-58)
+- lubridate (1.9.4)
+- data.table (1.17.8)
+- readr (2.1.5)
+- jsonlite (2.0.0)
+- dplyr (1.1.4)
+- rJava (1.0-11)

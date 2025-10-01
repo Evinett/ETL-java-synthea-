@@ -1,0 +1,24 @@
+export JAVA_HOME=$(brew --prefix openjdk)
+# Install remotes if needed#
+install.packages("remotes")#
+#
+# Install Achilles from GitHub#
+remotes::install_github("OHDSI/Achilles")
+Rscript run_achilles.R
+install.packages("remotes")#
+remotes::install_github("OHDSI/DatabaseConnector")#
+remotes::install_github("OHDSI/Achilles")
+# First, install the 'remotes' package which is needed to install from GitHub#
+install.packages("remotes")#
+#
+# Now use 'remotes' to install the OHDSI packages#
+remotes::install_github("OHDSI/DatabaseConnector")#
+remotes::install_github("OHDSI/Achilles")#
+#
+# Also install the package for the password prompt#
+install.packages("rstudioapi")
+q()
+Rscript run_achilles.R
+setwd("/Users/rward/Developer/ETL-Java")
+source("run_achilles.R")
+source("run_achilles.R")
