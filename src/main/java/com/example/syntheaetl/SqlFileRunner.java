@@ -47,7 +47,7 @@ public class SqlFileRunner {
 
         try (Statement stmt = conn.createStatement()) {
             // Set a timeout for SQL script execution to prevent indefinite hangs.
-            stmt.setQueryTimeout(300); // 5 minutes, as some data loading scripts can be long.
+            stmt.setQueryTimeout(1800); // 30 minutes, as some data loading scripts can be long.
             for (String singleSql : individualSqls) {
                 if (!singleSql.trim().isEmpty()) {
                     stmt.execute(singleSql);

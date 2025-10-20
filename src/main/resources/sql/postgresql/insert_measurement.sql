@@ -32,4 +32,5 @@ FROM @synthea_schema.observations o
 JOIN @cdm_schema.person p ON o.patient = p.person_source_value
 LEFT JOIN @cdm_schema.source_to_concept_map stcm ON o.code = stcm.source_code AND stcm.source_vocabulary_id = 'LOINC'
 LEFT JOIN @cdm_schema.visit_detail vd ON o.encounter = vd.visit_detail_source_value
-WHERE o.type = 'numeric';
+WHERE o.type = 'numeric' 
+  AND (stcm.target_domain_id = 'Measurement' OR stcm.target_domain_id IS NULL);

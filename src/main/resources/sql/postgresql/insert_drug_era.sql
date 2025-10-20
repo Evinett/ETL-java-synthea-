@@ -1,4 +1,6 @@
 -- This script is a PostgreSQL translation of the original drug era script
+-- Increase work_mem for complex window function operations on large datasets
+SET work_mem = '512MB';
 
 DROP TABLE IF EXISTS temp_drug_era;
 

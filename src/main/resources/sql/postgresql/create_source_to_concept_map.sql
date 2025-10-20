@@ -4,23 +4,32 @@ DROP TABLE IF EXISTS @cdm_schema.source_to_concept_map;
 
 CREATE TABLE @cdm_schema.source_to_concept_map AS
 WITH all_source_codes AS (
-    -- Conditions
-    SELECT code AS source_code, system AS source_vocabulary_id FROM @synthea_schema.conditions WHERE system = 'SNOMED'
+    -- Conditions (Synthea uses http://snomed.info/sct)
+    SELECT code AS source_code, 'SNOMED' AS source_vocabulary_id 
+    FROM @synthea_schema.conditions 
+    WHERE system LIKE '%snomed%'
     UNION
-    -- Procedures
-    SELECT code AS source_code, system AS source_vocabulary_id FROM @synthea_schema.procedures WHERE system = 'SNOMED'
+    -- Procedures (Synthea uses http://snomed.info/sct)
+    SELECT code AS source_code, 'SNOMED' AS source_vocabulary_id 
+    FROM @synthea_schema.procedures 
+    WHERE system LIKE '%snomed%'
     UNION
-    -- Medications
-    SELECT code AS source_code, 'RxNorm' AS source_vocabulary_id FROM @synthea_schema.medications
+    -- Medications (Synthea uses http://www.nlm.nih.gov/research/umls/rxnorm)
+    SELECT code AS source_code, 'RxNorm' AS source_vocabulary_id 
+    FROM @synthea_schema.medications
     UNION
-    -- Observations
-    SELECT code AS source_code, 'LOINC' AS source_vocabulary_id FROM @synthea_schema.observations
+    -- Observations (Synthea uses http://loinc.org)
+    SELECT code AS source_code, 'LOINC' AS source_vocabulary_id 
+    FROM @synthea_schema.observations
     UNION
-    -- Devices
-    SELECT code AS source_code, 'SNOMED' AS source_vocabulary_id FROM @synthea_schema.devices
+    -- Devices (Synthea uses http://snomed.info/sct)
+    SELECT code AS source_code, 'SNOMED' AS source_vocabulary_id 
+    FROM @synthea_schema.devices
     UNION
-    -- Allergies
-    SELECT code AS source_code, system AS source_vocabulary_id FROM @synthea_schema.allergies WHERE system = 'SNOMED'
+    -- Allergies (Synthea uses http://snomed.info/sct)
+    SELECT code AS source_code, 'SNOMED' AS source_vocabulary_id 
+    FROM @synthea_schema.allergies 
+    WHERE system LIKE '%snomed%'
 )
 SELECT
     DISTINCT s.source_code,

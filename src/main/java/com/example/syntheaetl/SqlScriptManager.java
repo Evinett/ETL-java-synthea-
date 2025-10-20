@@ -65,9 +65,13 @@ public class SqlScriptManager {
             SqlFileRunner.runSqlFile(connection, "src/main/resources/sql/postgresql/" + script, replacements);
         }
 
-        // Run the era-building scripts after the main event tables are populated.
-        // Era scripts only need the cdm_schema
+        // Prepare for era calculation by adding indexes (important for large datasets)
+        System.out.println("\n--- Preparing for Era Calculation (adding indexes) ---");
         Map<String, String> eraReplacements = Map.of("cdm_schema", this.cdmSchema);
+        SqlFileRunner.runSqlFile(connection, "src/main/resources/sql/postgresql/prepare_for_era_calculation.sql", eraReplacements);
+
+        // Run the era-building scripts after the main event tables are populated.
+        System.out.println("\n--- Running Era Calculation Scripts (this may take 10-30 minutes for large datasets) ---");
         SqlFileRunner.runSqlFile(connection, "src/main/resources/sql/postgresql/insert_condition_era.sql", eraReplacements);
         SqlFileRunner.runSqlFile(connection, "src/main/resources/sql/postgresql/insert_drug_era.sql", eraReplacements);
 

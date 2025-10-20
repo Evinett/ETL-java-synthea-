@@ -25,4 +25,5 @@ SELECT
 FROM @synthea_schema.procedures pr
 JOIN @cdm_schema.person p ON pr.patient = p.person_source_value
 LEFT JOIN @cdm_schema.source_to_concept_map stcm ON pr.code = stcm.source_code AND stcm.source_vocabulary_id = 'SNOMED'
-LEFT JOIN @cdm_schema.visit_detail vd ON pr.encounter = vd.visit_detail_source_value;
+LEFT JOIN @cdm_schema.visit_detail vd ON pr.encounter = vd.visit_detail_source_value
+WHERE stcm.target_domain_id = 'Procedure' OR stcm.target_domain_id IS NULL;
