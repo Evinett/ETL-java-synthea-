@@ -1,5 +1,7 @@
 # ETL-Java-Synthea to OMOP CDM
-# Roger Ward, October 2025
+# Roger Ward, October 2025 Updated June 2026
+
+Fixed a delimiter issue. Re-checked and created a 105 person sythetic dataset
 
 Important: You will need to download the CDM vocabulary from Athena (mine was in CDM_may25/)
 
