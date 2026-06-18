@@ -88,8 +88,7 @@ public class CsvLoader {
             // 3. Use the fast PostgreSQL COPY command to load raw data
             System.out.println(" - Bulk loading into staging table: " + stagingTableName);
             CopyManager copyManager = new CopyManager((BaseConnection) connection.unwrap(Connection.class));
-            String copySql = String.format("COPY %s FROM STDIN WITH (FORMAT CSV, HEADER TRUE, DELIMITER '%c', NULL '')",
-                    qualifiedStagingTableName, this.delimiter);
+           String copySql = String.format("COPY %s FROM STDIN WITH (FORMAT CSV, HEADER TRUE, DELIMITER '%c', NULL '', QUOTE E'\\x01')",
 
             long rowsAffected;
             try (FileReader fileReader = new FileReader(filePath.toFile())) {
